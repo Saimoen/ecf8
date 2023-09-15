@@ -7,11 +7,12 @@ Ce plugin WordPress ajoute un jeu qui consiste à rechercher un trésor sur une 
 ## Installation
 
 1. Téléchargez le fichier ZIP de ce plugin à partir du référentiel GitHub.
-2. Connectez-vous à votre site WordPress.
-3. Dans le menu d'administration, accédez à "Extensions" > "Ajouter un nouveau".
-4. Cliquez sur le bouton "Téléverser une extension" en haut de la page.
-5. Choisissez le fichier ZIP que vous avez téléchargé à l'étape 1 et cliquez sur "Installer maintenant".
-6. Après l'installation, cliquez sur "Activer l'extension" pour activer le plugin.
+2. Dezipper dans le dossier "C:\xampp\htdocs\wordpress\wp-content\plugins".
+3. Connectez-vous à votre site WordPress.
+4. Dans le menu d'administration, accédez à "Extensions".
+5. L'extension sera affichée dans la liste des extensions et activez-le.
+6. Une carte apparaîtra sur le tableau de bord, cliquez directement sur les flèches.
+7. Vous pouvez y jouer !
 
 ## Configuration
 
