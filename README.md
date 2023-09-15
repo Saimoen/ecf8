@@ -12,7 +12,6 @@ Ce plugin WordPress ajoute un jeu qui consiste à rechercher un trésor sur une 
 4. Dans le menu d'administration, accédez à "Extensions".
 5. L'extension sera affichée dans la liste des extensions et activez-le.
 6. Une carte apparaîtra sur le tableau de bord, cliquez directement sur les flèches.
-7. Vous pouvez y jouer !
 
 ## Configuration
 
