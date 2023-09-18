@@ -9,16 +9,16 @@ Author: Grégory Saimoen
 defined('ABSPATH') or die('Accès interdit');
 // Inclure d'autres fichiers de votre plugin
 require_once plugin_dir_path(__FILE__) . 'includes/controllers/controller.php';
-require_once plugin_dir_path(__FILE__) . 'includes/models/Player.php';
 // Actions WordPress pour charger des scripts et styles
-function mon_plugin_enqueue_scripts() {
-    // Chargez vos fichiers JavaScript
-    wp_enqueue_script('mon-plugin-script', plugin_dir_url(__FILE__) . 'assets/js/script.js', array('jquery'), '1.0', true);
-
-    // Chargez vos fichiers css
-    wp_enqueue_style('mon-plugin-style', plugin_dir_url(__FILE__) . 'assets/css/style.css', array(), '1.0');
+function questmaster_enqueue_scripts() {
+    // Si l'utilisateur est un administrateur, chargez la vue de l'extension
+    if (current_user_can('administrator')) {
+        // Chargez les fichiers JavaScript et CSS de l'extension
+        wp_enqueue_script('mon-plugin-script', plugin_dir_url(__FILE__) . 'assets/js/script.js', array(), '1.0', true);
+        wp_enqueue_style('mon-plugin-style', plugin_dir_url(__FILE__) . 'assets/css/style.css', array(), '1.0');
+    }
 }
-add_action('wp_enqueue_scripts', 'mon_plugin_enqueue_scripts');
+add_action('wp_enqueue_scripts', 'questmaster_enqueue_scripts');
 
 function mon_plugin_menu() {
     // Ajoutez des éléments de menu ou des pages d'administration ici, si nécessaire
@@ -42,8 +42,7 @@ function mon_plugin_deactivate() {
 function game_display() {
     ob_start();
     ?>
-    <div id="game-container">
-        <h1>QuestMaster</h1>
+    <div style="width: 100%" id="game-container">
         <?php
         // Inclure le contenu de votre fichier index.php
         include(plugin_dir_path(__FILE__) . '\includes\index.php');
@@ -56,6 +55,7 @@ function game_display_shortcode() {
     return game_display();
 }
 add_shortcode('game', 'game_display_shortcode');
+
 
 register_activation_hook(__FILE__, 'mon_plugin_activate');
 register_deactivation_hook(__FILE__, 'mon_plugin_deactivate');

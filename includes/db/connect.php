@@ -2,7 +2,7 @@
 $servername = "localhost";
 $username = "root";
 $password = "root";
-$db = "aventuratech";
+$db = "ecf8";
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $db);

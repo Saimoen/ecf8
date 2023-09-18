@@ -1,4 +1,5 @@
 <?php
+
 session_start();
 require_once plugin_dir_path(__FILE__) . '../models/Player.php';
 require_once plugin_dir_path(__FILE__) . '../models/Monster.php';
@@ -78,10 +79,6 @@ if (isset($_GET['direction'])) {
         if ($player->getPositionX() == $monster['positionX'] && $player->getPositionY() == $monster['positionY']) {
             // Commencez le combat entre le joueur et le monstre
             $result = $fight->startFight($player, $monster);
-
-            // Vous pouvez traiter le résultat du combat ici, comme ajuster les points de vie du joueur et du monstre, etc.
-
-
             // Retirez le monstre de la liste s'il a été vaincu ou autre action nécessaire
             unset($_SESSION['monsters'][$key]);
         }
@@ -95,4 +92,6 @@ if (isset($_GET['direction'])) {
 
 
 // Include the view
-require_once plugin_dir_path(__FILE__) . '../views/view.php';
+if (is_page('game')) {
+    require_once plugin_dir_path(__FILE__) . '../index.php';
+}

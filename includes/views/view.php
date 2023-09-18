@@ -1,12 +1,13 @@
 <?php
-require_once plugin_dir_path(__FILE__) . '../controllers/controller.php';
-require_once plugin_dir_path(__FILE__) . '../models/Player.php';
-require_once plugin_dir_path(__FILE__) . '../models/Monster.php';
-require_once plugin_dir_path(__FILE__) . '../models/Chest.php';
-require_once plugin_dir_path(__FILE__) . '../db/connect.php';
-$monster = new Monster();
-$chest = new Chest();
-$player = new Player('');
+    ob_start();
+    require_once plugin_dir_path(__FILE__) . '../controllers/controller.php';
+    require_once plugin_dir_path(__FILE__) . '../models/Player.php';
+    require_once plugin_dir_path(__FILE__) . '../models/Monster.php';
+    require_once plugin_dir_path(__FILE__) . '../models/Chest.php';
+    require_once plugin_dir_path(__FILE__) . '../db/connect.php';
+    $monster = new Monster();
+    $chest = new Chest();
+    $player = new Player('');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -14,8 +15,8 @@ $player = new Player('');
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Monster Game</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"/>
     <link rel="stylesheet" href="../../assets/css/style.css">
 </head>
 <body>
@@ -96,23 +97,23 @@ $player = new Player('');
                     <div class="row">
                         <div class="col-4"></div>
                         <div class="col-4">
-                            <a href="../controllers/controller.php?direction=0"><i class="fa-solid fa-arrow-up fa-3x"></i></a>
+                            <a href="<?php echo site_url(); ?>/controllers/controller.php?direction=0"><i class="fa-solid fa-arrow-up fa-3x"></i></a>
                         </div>
                         <div class="col-4"></div>
                     </div>
                     <div class="row">
                         <div class="col-4">
-                            <a href="../controllers/controller.php?direction=3"><i class="fa-solid fa-arrow-left fa-3x"></i></a>
+                            <a href="<?php echo site_url(); ?>/controllers/controller.php?direction=3"><i class="fa-solid fa-arrow-left fa-3x"></i></a>
                         </div>
                         <div class="col-4"></div>
                         <div class="col-4">
-                            <a href="../controllers/controller.php?direction=1"><i class="fa-solid fa-arrow-right fa-3x"></i></a>
+                            <a href="<?php echo site_url(); ?>/controllers/controller.php?direction=1"><i class="fa-solid fa-arrow-right fa-3x"></i></a>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-4"></div>
                         <div class="col-4">
-                            <a href="../controllers/controller.php?direction=2"><i class="fa-solid fa-arrow-down fa-3x"></i></a>
+                            <a href="<?php echo site_url(); ?>/controllers/controller.php?direction=2"><i class="fa-solid fa-arrow-down fa-3x"></i></a>
                         </div>
                         <div class="col-4"></div>
                     </div>
@@ -132,14 +133,30 @@ $player = new Player('');
                 </div>
                 <br>
                 <div class="border border-rounded p-3" style="width: 100%;">
-                    <?= findChest() ?>
+                    <?php echo findChest() ?>
                 </div>
                 <div class="w-100 mx-auto text-center mt-3">
-                    <a class="btn btn-danger" href="../controllers/controller.php?reset=true">Nouvelle Partie</a>
+                    <a class="btn btn-danger" href="<?php echo site_url(); ?>/controllers/controller.php?reset=true">Nouvelle Partie</a>
                 </div>
             </div>
         </div>
     </div>
-    <script src="../public/script.js"></script>
+
+<a href="#" onclick="movePlayer(0)">Haut</a>
+<a href="#" onclick="movePlayer(1)">Droite</a>
+<a href="#" onclick="movePlayer(2)">Bas</a>
+<a href="#" onclick="movePlayer(3)">Gauche</a>
+
+<script>
+    function movePlayer() {
+        // Get the direction from the user input
+        const direction = document.querySelector('.direction').value;
+
+        // Move the player
+        const player = new Player();
+        player.move(direction);
+    }
+</script>
+
 </body>
 </html>
